@@ -1,0 +1,55 @@
+diff include/curl/curlbuild.h armv7s/include/curl/curlbuild.h
+136,138d135
+< #ifdef __LP64__
+< /* #undef CURL_PULL_STDINT_H */
+< #else
+140d136
+< #endif
+147,149d142
+< #ifdef __LP64__
+< /* #undef CURL_PULL_INTTYPES_H */
+< #else
+151d143
+< #endif
+171,173d162
+< #ifdef __LP64__
+< #define CURL_SIZEOF_LONG 8
+< #else
+175d163
+< #endif
+187,189d174
+< #ifdef __LP64__
+< #define CURL_TYPEOF_CURL_OFF_T long
+< #else
+191d175
+< #endif
+197,199d180
+< #ifdef __LP64__
+< #define CURL_FORMAT_CURL_OFF_T "ld"
+< #else
+201d181
+< #endif
+204,206d183
+< #ifdef __LP64__
+< #define CURL_FORMAT_CURL_OFF_TU "lu"
+< #else
+208d184
+< #endif
+211,213d186
+< #ifdef __LP64__
+< #define CURL_FORMAT_OFF_T "%ld"
+< #else
+215d187
+< #endif
+221,223d192
+< #ifdef __LP64__
+< #define CURL_SUFFIX_CURL_OFF_T L
+< #else
+225d193
+< #endif
+228,230d195
+< #ifdef __LP64__
+< #define CURL_SUFFIX_CURL_OFF_TU UL
+< #else
+232d196
+< #endif
