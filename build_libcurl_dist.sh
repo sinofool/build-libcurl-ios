@@ -35,6 +35,7 @@ curl -O https://raw.githubusercontent.com/sinofool/build-curl-ios/master/patch-i
 patch ${TMP_DIR}/include/curl/curlbuild.h < patch-include.patch
 
 DIST_DIR=${HOME}/libcurl-ios-dist
+rm -rf ${DIST_DIR}
 mkdir ${DIST_DIR}
 cp -r ${TMP_DIR}/include ${TMP_DIR}/libcurl.a ${DIST_DIR}
 
