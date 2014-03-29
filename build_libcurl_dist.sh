@@ -31,10 +31,11 @@ ${DEVROOT}/usr/bin/lipo \
 	-output ${TMP_DIR}/libcurl.a -create
 
 cp -r ${TMP_DIR}/armv7s/include ${TMP_DIR}/
-curl -O https://raw.githubusercontent.com/sinofool/build-curl-ios/master/patch-include.patch
+curl -O https://raw.githubusercontent.com/sinofool/build-libcurl-ios/master/patch-include.patch
 patch ${TMP_DIR}/include/curl/curlbuild.h < patch-include.patch
 
-DIST_DIR=${HOME}/libcurl-ios-dist
+DIST_DIR=${HOME}/Desktop/libcurl-ios-dist
+rm -rf ${DIST_DIR}
 mkdir ${DIST_DIR}
 cp -r ${TMP_DIR}/include ${TMP_DIR}/libcurl.a ${DIST_DIR}
 
