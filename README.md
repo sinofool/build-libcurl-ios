@@ -1,7 +1,8 @@
 build-libcurl-ios
 =================
 
-Build libcurl for iOS development
+Build libcurl for iOS development.
+Includes armv7 armv7s arm64 i386 and x86_64 support.
 
 Script only, please download libcurl from here: http://curl.haxx.se/download.html
 Tested iOS SDK 7.1 and MacOSX 10.9
