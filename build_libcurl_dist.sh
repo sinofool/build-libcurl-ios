@@ -8,12 +8,10 @@ function build_for_arch() {
   SYSROOT=$3
   PREFIX=$4
   IPHONEOS_DEPLOYMENT_TARGET="4.3"
-  export CC="${DEVROOT}/usr/bin/clang"
-  export AR="${DEVROOT}/usr/bin/ar"
-  export RANLIB="${DEVROOT}/usr/bin/ranlib"
+  export PATH="${DEVROOT}/usr/bin/:${PATH}"
   export CFLAGS="-arch ${ARCH} -pipe -Os -gdwarf-2 -isysroot ${SYSROOT} -miphoneos-version-min=${IPHONEOS_DEPLOYMENT_TARGET}"
   export LDFLAGS="-arch ${ARCH} -isysroot ${SYSROOT}"
-  ./configure --disable-shared --enable-static --host="${HOST}" --prefix=${PREFIX} && make -j8 && make install
+  ./configure --disable-shared --enable-static --with-ssl=${HOME}/Desktop/openssl-ios-dist --host="${HOST}" --prefix=${PREFIX} && make -j8 && make install
 }
 
 TMP_DIR=/tmp/build_libcurl_$$
