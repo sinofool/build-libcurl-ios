@@ -7,7 +7,7 @@ function build_for_arch() {
   HOST=$2
   SYSROOT=$3
   PREFIX=$4
-  IPHONEOS_DEPLOYMENT_TARGET="4.3"
+  IPHONEOS_DEPLOYMENT_TARGET="6.0"
   export PATH="${DEVROOT}/usr/bin/:${PATH}"
   export CFLAGS="-arch ${ARCH} -pipe -Os -gdwarf-2 -isysroot ${SYSROOT} -miphoneos-version-min=${IPHONEOS_DEPLOYMENT_TARGET}"
   export LDFLAGS="-arch ${ARCH} -isysroot ${SYSROOT}"
@@ -16,11 +16,11 @@ function build_for_arch() {
 
 TMP_DIR=/tmp/build_libcurl_$$
 
-build_for_arch i386 i386-apple-darwin /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk ${TMP_DIR}/i386 || exit 1
-build_for_arch x86_64 x86_64-apple-darwin /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.1.sdk ${TMP_DIR}/x86_64 || exit 2
-build_for_arch arm64 arm-apple-darwin /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk ${TMP_DIR}/arm64 || exit 3
-build_for_arch armv7s armv7s-apple-darwin /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk ${TMP_DIR}/armv7s || exit 4
-build_for_arch armv7 armv7-apple-darwin /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk ${TMP_DIR}/armv7 || exit 5
+build_for_arch i386 i386-apple-darwin /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator8.0.sdk ${TMP_DIR}/i386 || exit 1
+build_for_arch x86_64 x86_64-apple-darwin /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator8.0.sdk ${TMP_DIR}/x86_64 || exit 2
+build_for_arch arm64 arm-apple-darwin /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.0.sdk ${TMP_DIR}/arm64 || exit 3
+build_for_arch armv7s armv7s-apple-darwin /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.0.sdk ${TMP_DIR}/armv7s || exit 4
+build_for_arch armv7 armv7-apple-darwin /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.0.sdk ${TMP_DIR}/armv7 || exit 5
 
 ${DEVROOT}/usr/bin/lipo \
 	-arch i386 ${TMP_DIR}/i386/lib/libcurl.a \
