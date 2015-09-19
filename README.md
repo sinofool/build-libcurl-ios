@@ -1,4 +1,4 @@
-build-libcurl-ios
+libcurl for iOS
 =================
 Build libcurl for iOS development.  
 This script will generate static library for armv7 armv7s arm64 i386 and x86_64.  
