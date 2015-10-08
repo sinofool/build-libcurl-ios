@@ -1,6 +1,14 @@
 #!/bin/bash
 
 export DEVROOT=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain
+DIST_DIR=${HOME}/Desktop/libcurl-ios-dist
+
+function check_curl_ver() {
+echo "#include \"include/curl/curlver.h\"
+#if LIBCURL_VERSION_MAJOR < 7 || LIBCURL_VERSION_MINOR < 40
+#error Required curl 7.40.0+; See http://curl.haxx.se/docs/adv_20150108A.html
+#endif"|gcc -c -o /dev/null -xc -||exit 9
+}
 
 function build_for_arch() {
   ARCH=$1
@@ -11,8 +19,21 @@ function build_for_arch() {
   export PATH="${DEVROOT}/usr/bin/:${PATH}"
   export CFLAGS="-arch ${ARCH} -pipe -Os -gdwarf-2 -isysroot ${SYSROOT} -miphoneos-version-min=${IPHONEOS_DEPLOYMENT_TARGET} -fembed-bitcode"
   export LDFLAGS="-arch ${ARCH} -isysroot ${SYSROOT}"
-  ./configure --disable-shared --enable-static --with-ssl=${HOME}/Desktop/openssl-ios-dist --host="${HOST}" --prefix=${PREFIX} && make -j8 && make install
+  ./configure --disable-shared --enable-static ${SSL_FLAG} --host="${HOST}" --prefix=${PREFIX} && make -j8 && make install
 }
+
+if [ "$1" == "openssl" ]
+then
+  if [ ! -d ${HOME}/Desktop/openssl-ios-dist ]
+  then
+    echo "Please use https://github.com/sinofool/build-openssl-ios/ to build OpenSSL for iOS first"
+    exit 8
+  fi
+  export SSL_FLAG=--with-ssl=${HOME}/Desktop/openssl-ios-dist
+else
+  check_curl_ver
+  export SSL_FLAG=--with-darwinssl
+fi
 
 TMP_DIR=/tmp/build_libcurl_$$
 
@@ -35,7 +56,6 @@ cp -r ${TMP_DIR}/armv7s/include ${TMP_DIR}/
 curl -O https://raw.githubusercontent.com/sinofool/build-libcurl-ios/master/patch-include.patch
 patch ${TMP_DIR}/include/curl/curlbuild.h < patch-include.patch
 
-DIST_DIR=${HOME}/Desktop/libcurl-ios-dist
 rm -rf ${DIST_DIR}
 mkdir ${DIST_DIR}
 cp -r ${TMP_DIR}/include ${TMP_DIR}/lib ${DIST_DIR}
