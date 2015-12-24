@@ -1,7 +1,8 @@
 #!/bin/bash
 
 export DEVROOT=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain
-DIST_DIR=${HOME}/Desktop/libcurl-ios-dist
+DFT_DIST_DIR=${HOME}/Desktop/libcurl-ios-dist
+DIST_DIR=${DIST_DIR:-$DFT_DIST_DIR}
 
 function check_curl_ver() {
 echo "#include \"include/curl/curlver.h\"
@@ -56,7 +57,6 @@ cp -r ${TMP_DIR}/armv7s/include ${TMP_DIR}/
 curl -O https://raw.githubusercontent.com/sinofool/build-libcurl-ios/master/patch-include.patch
 patch ${TMP_DIR}/include/curl/curlbuild.h < patch-include.patch
 
-rm -rf ${DIST_DIR}
-mkdir ${DIST_DIR}
+mkdir -p ${DIST_DIR}
 cp -r ${TMP_DIR}/include ${TMP_DIR}/lib ${DIST_DIR}
 
