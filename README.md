@@ -6,15 +6,15 @@ Bitcode support.
 OpenSSL and Darwin native ssl support.  
   
 Script only, please download libcurl from here: http://curl.haxx.se/download.html  
-Tested iOS SDK 9.0 and MacOSX 10.11  
-Tested curl 7.44.0
+Tested Xcode 7.2.1(7C1002) on OSX 10.11.3  
+Tested curl 7.44.0 and 7.47.1  
 
 Usage
 =================
 ```
-curl -O http://curl.haxx.se/download/curl-7.44.0.tar.gz
-tar xf curl-7.44.0.tar.gz
-cd curl-7.44.0
+curl -O http://curl.haxx.se/download/curl-7.47.1.tar.gz
+tar xf curl-7.47.1.tar.gz
+cd curl-7.47.1
 curl https://raw.githubusercontent.com/sinofool/build-libcurl-ios/master/build_libcurl_dist.sh |bash
 ......
 ```
