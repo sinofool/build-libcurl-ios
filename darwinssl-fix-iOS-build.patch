@@ -1,0 +1,30 @@
+From 8db3afe16c0916ea5acf6aed6e7cf02f06cc8677 Mon Sep 17 00:00:00 2001
+From: Chris Araman <chris-araman@users.noreply.github.com>
+Date: Thu, 22 Dec 2016 18:27:17 -0800
+Subject: [PATCH] darwinssl: fix iOS build
+
+Reviewed-by: Nick Zitzmann
+Fixes #1172
+---
+ lib/vtls/darwinssl.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/lib/vtls/darwinssl.c b/lib/vtls/darwinssl.c
+index a43e391..2146b56 100644
+--- a/lib/vtls/darwinssl.c
++++ b/lib/vtls/darwinssl.c
+@@ -936,7 +936,11 @@ static OSStatus CopyIdentityWithLabel(char *label,
+           (SecIdentityRef) CFArrayGetValueAtIndex(keys_list, i);
+         err = SecIdentityCopyCertificate(*out_cert_and_key, &cert);
+         if(err == noErr) {
++#if CURL_BUILD_IOS
++          common_name = SecCertificateCopySubjectSummary(cert);
++#else // CURL_BUILD_MAC_10_7
+           SecCertificateCopyCommonName(cert, &common_name);
++#endif
+           if(CFStringCompare(common_name, label_cf, 0) == kCFCompareEqualTo) {
+             CFRelease(cert);
+             CFRelease(common_name);
+-- 
+2.10.1 (Apple Git-78)
+
