@@ -12,7 +12,7 @@ Tested curl 7.54.0
 Usage
 =================
 ```
-curl -O http://curl.haxx.se/download/curl-7.54.0.tar.gz
+curl -O https://curl.haxx.se/download/curl-7.54.0.tar.gz
 tar xf curl-7.54.0.tar.gz
 cd curl-7.54.0
 curl https://raw.githubusercontent.com/sinofool/build-libcurl-ios/master/build_libcurl_dist.sh |bash
@@ -32,7 +32,9 @@ The fix have commited to curl just one day after release, which should be avalia
 
 Workaround for this issue is:
 - patch it with the commit (See darwinssl-fix-iOS-build.patch extacted)
-- Or, use openssl with: ```
+- Or, use openssl with:
+
+```bash
 ../build_libcurl_dist.sh openssl
 ```
 
@@ -40,17 +42,19 @@ OpenSSL
 =================
 The script link with native ssl by default (--with-darwinssl).  
 To use OpenSSL, use https://github.com/sinofool/build-openssl-ios/ to build OpenSSL for iOS first, in curl source directory run:
-```
+
+```bash
 curl https://raw.githubusercontent.com/sinofool/build-libcurl-ios/master/build_libcurl_dist.sh openssl |bash
 ```
 
 Binary (Not updated yet)
 =================
-Following binary is curl-7.47.1, I will release 7.52.1 binaries after a longer test.
+Following binary is curl-7.47.1, I will release 7.54.0 binaries after a longer test.
 
 You can find a prebuild binary (with OpenSSL) here: https://sinofool.net/dl/libcurl-ios-dist.tar.bz2
 
 Double check the binary file before use:
+
 ```
 SHA1:
 993c9bb75d798a886749e7801d5f54c494dbf6fb  libcurl-ios-dist.tar.bz2
