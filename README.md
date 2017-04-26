@@ -6,8 +6,19 @@ Bitcode support.
 OpenSSL and Darwin native ssl support.  
   
 Script only, please download libcurl from here: http://curl.haxx.se/download.html  
-Tested Xcode 8.1 on macOS 10.12  
-Tested curl 7.52.1
+Tested Xcode 8.2.1 on macOS 10.12.4  
+Tested curl 7.54.0 
+
+Usage
+=================
+```
+curl -O http://curl.haxx.se/download/curl-7.54.0.tar.gz
+tar xf curl-7.54.0.tar.gz
+cd curl-7.54.0
+curl https://raw.githubusercontent.com/sinofool/build-libcurl-ios/master/build_libcurl_dist.sh |bash
+......
+```
+Find the result libcurl-ios-dist on your desktop.
 
 curl-7.52.1 issue
 =================
@@ -24,19 +35,6 @@ Workaround for this issue is:
 - Or, use openssl with: ```
 ../build_libcurl_dist.sh openssl
 ```
-
-Usage
-=================
-```
-curl -O http://curl.haxx.se/download/curl-7.52.1.tar.gz
-tar xf curl-7.52.1.tar.gz
-cd curl-7.52.1
-curl -O https://raw.githubusercontent.com/sinofool/build-libcurl-ios/master/darwinssl-fix-iOS-build.patch
-patch -p1 < darwinssl-fix-iOS-build.patch
-curl https://raw.githubusercontent.com/sinofool/build-libcurl-ios/master/build_libcurl_dist.sh |bash
-......
-```
-Find the result libcurl-ios-dist on your desktop.
 
 OpenSSL
 =================
