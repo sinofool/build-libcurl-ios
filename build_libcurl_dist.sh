@@ -6,15 +6,9 @@ DIST_DIR=${DIST_DIR:-$DFT_DIST_DIR}
 
 function check_curl_ver() {
 echo "#include \"include/curl/curlver.h\"
-#if LIBCURL_VERSION_MAJOR < 7 || LIBCURL_VERSION_MINOR < 40
+#if LIBCURL_VERSION_MAJOR < 7 || LIBCURL_VERSION_MINOR < 55
 #error Required curl 7.40.0+; See http://curl.haxx.se/docs/adv_20150108A.html
-#endif"|gcc -c -o /dev/null -xc -||exit 9
-
-echo "#include \"include/curl/curlver.h\"
-#if LIBCURL_VERSION_MAJOR == 7 &&  LIBCURL_VERSION_MINOR <= 52 && LIBCURL_VERSION_PATCH <= 1
-#warning curl 7.52.1 have an issue build with darwinssl; See patch here: https://github.com/curl/curl/commit/8db3afe16c0916ea5acf6aed6e7cf02f06cc8677
-#warning For 7.52.1 is the latest release version, the patch commited just one day later than release cut. I can't automatically apply the patch for you.
-#warning Please patch it with: patch -p1 < darwinssl-fix-iOS-build.patch
+#error Supported minimal version is 7.55.0 for header file changes, see Issue #12 (https://github.com/sinofool/build-libcurl-ios/issues/12)
 #endif"|gcc -c -o /dev/null -xc -||exit 9
 }
 
@@ -58,12 +52,7 @@ ${DEVROOT}/usr/bin/lipo \
 	-arch arm64 ${TMP_DIR}/arm64/lib/libcurl.a \
 	-output ${TMP_DIR}/lib/libcurl.a -create
 
-#	-arch armv7 ${TMP_DIR}/armv7/lib/libcurl.a \
-#	-arch i386 ${TMP_DIR}/i386/lib/libcurl.a \
-
-cp -r ${TMP_DIR}/armv7s/include ${TMP_DIR}/
-curl -O https://raw.githubusercontent.com/sinofool/build-libcurl-ios/master/patch-include.patch
-patch ${TMP_DIR}/include/curl/curlbuild.h < patch-include.patch
+cp -r ${TMP_DIR}/arm64/include ${TMP_DIR}/
 
 mkdir -p ${DIST_DIR}
 cp -r ${TMP_DIR}/include ${TMP_DIR}/lib ${DIST_DIR}
