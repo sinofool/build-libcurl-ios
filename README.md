@@ -47,18 +47,16 @@ To use OpenSSL, use https://github.com/sinofool/build-openssl-ios/ to build Open
 curl https://raw.githubusercontent.com/sinofool/build-libcurl-ios/master/build_libcurl_dist.sh openssl |bash
 ```
 
-Binary (Not updated yet)
+Binary 
 =================
-Following binary is curl-7.47.1, I will release 7.54.0 binaries after a longer test.
-
-You can find a prebuild binary (with OpenSSL) here: https://sinofool.net/dl/libcurl-ios-dist.tar.bz2
+You can find a prebuild binary (version 7.57.0 built without OpenSSL) here: https://sinofool.net/dl/libcurl-ios-dist.tar.gz
 
 Double check the binary file before use:
 
 ```
 SHA1:
-993c9bb75d798a886749e7801d5f54c494dbf6fb  libcurl-ios-dist.tar.bz2
+a94458b89ef18b90422cf3affbdac5b8e2e0a0fd  libcurl-ios-dist.tar.gz
 
 GnuPG: (My Key ID: 9BE18853)
-https://sinofool.net/dl/libcurl-ios-dist.tar.bz2.sig
+https://sinofool.net/dl/libcurl-ios-dist.tar.gz.sig
 ```
