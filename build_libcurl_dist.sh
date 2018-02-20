@@ -48,11 +48,11 @@ build_for_arch armv7 armv7-apple-darwin ${XCODE_DEV}/Platforms/iPhoneOS.platform
 
 mkdir -p ${TMP_DIR}/lib/
 ${DEVROOT}/usr/bin/lipo \
-	-arch x86_64 ${TMP_DIR}/x86_64/lib/libcurl.a \
-	-arch armv7 ${TMP_DIR}/armv7/lib/libcurl.a \
-	-arch armv7s ${TMP_DIR}/armv7s/lib/libcurl.a \
-	-arch arm64 ${TMP_DIR}/arm64/lib/libcurl.a \
-	-output ${TMP_DIR}/lib/libcurl.a -create
+  -arch x86_64 ${TMP_DIR}/x86_64/lib/libcurl.a \
+  -arch armv7 ${TMP_DIR}/armv7/lib/libcurl.a \
+  -arch armv7s ${TMP_DIR}/armv7s/lib/libcurl.a \
+  -arch arm64 ${TMP_DIR}/arm64/lib/libcurl.a \
+  -output ${TMP_DIR}/lib/libcurl.a -create
 
 cp -r ${TMP_DIR}/arm64/include ${TMP_DIR}/
 
