@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -euo pipefail
 
 export DEVROOT=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain
 DFT_DIST_DIR=${HOME}/Desktop/libcurl-ios-dist
@@ -24,7 +24,7 @@ function build_for_arch() {
   ./configure --disable-shared --without-zlib --enable-static --enable-ipv6 ${SSL_FLAG} --host="${HOST}" --prefix=${PREFIX} && make -j8 && make install
 }
 
-if [ "$1" == "openssl" ]
+if [ "${1:-''}" == "openssl" ]
 then
   if [ ! -d ${HOME}/Desktop/openssl-ios-dist ]
   then
