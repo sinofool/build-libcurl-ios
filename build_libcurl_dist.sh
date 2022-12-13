@@ -35,7 +35,7 @@ then
   export SSL_FLAG=--with-ssl=${HOME}/Desktop/openssl-ios-dist
 else
   check_curl_ver
-  export SSL_FLAG=--with-darwinssl
+  export SSL_FLAG=--with-secure-transport
 fi
 
 TMP_DIR=/tmp/build_libcurl_$$
