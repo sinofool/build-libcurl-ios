@@ -7,7 +7,7 @@ DIST_DIR=${DIST_DIR:-$DFT_DIST_DIR}
 
 function check_curl_ver() {
 echo "#include \"include/curl/curlver.h\"
-#if LIBCURL_VERSION_MAJOR < 7 || LIBCURL_VERSION_MINOR < 55
+#if LIBCURL_VERSION_MAJOR < 7 && LIBCURL_VERSION_MINOR < 55
 #error Required curl 7.40.0+; See http://curl.haxx.se/docs/adv_20150108A.html
 #error Supported minimal version is 7.55.0 for header file changes, see Issue #12 (https://github.com/sinofool/build-libcurl-ios/issues/12)
 #endif"|gcc -c -o /dev/null -xc -||exit 9
